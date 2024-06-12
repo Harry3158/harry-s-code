@@ -8,7 +8,7 @@ def exit_pressure(initial_pressure, exit_area_ratio, specific_heat_ratio):
         specific_heat_ratio (float): Specific heat ratio (γ) of the gas.
 
     Returns:
-        float: Exit pressure.
+        float: Exit pressure...
     """
     exit_pressure = initial_pressure / exit_area_ratio ** (specific_heat_ratio)
     return exit_pressure
