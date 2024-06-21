@@ -1,0 +1,28 @@
+from pytube import YouTube
+
+# Function to download YouTube video
+def download_youtube_video(url, resolution='1080p'):
+    try:
+        # Create YouTube object
+        yt = YouTube(url)
+        
+        # Get the stream with the specified resolution
+        stream = yt.streams.filter(res=resolution, file_extension='mp4').first()
+        
+        # If the desired resolution is not found, download the highest resolution available
+        if not stream:
+            print(f"{resolution} resolution not available. Downloading highest resolution available.")
+            stream = yt.streams.get_highest_resolution()
+        
+        # Download the video
+        stream.download()
+        
+        print(f"Downloaded: {yt.title}")
+    except Exception as e:
+        print(f"Error: {e}")
+
+# URL of the YouTube video to be downloaded
+video_url = 'https://www.youtube.com/watch?v=RpE-hVumiDI&list=RDkfXy4W0aD40&index=3'
+
+# Download the video
+download_youtube_video(video_url)
